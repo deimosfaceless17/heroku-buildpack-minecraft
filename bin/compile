@@ -78,7 +78,7 @@ fi
 echo -n "-----> Installing Minecraft ${minecraft_version}... "
 curl -o minecraft.jar -s -L $minecraft_url
 mv minecraft.jar $BUILD_DIR/minecraft.jar
-eval "java -jar forge.jar --installServer"
+eval "java -jar minecraft.jar --installServer"
 echo "done"
 
 if [ -n "${MINECRAFT_EULA:-""}" ]; then
