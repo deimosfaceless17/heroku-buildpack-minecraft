@@ -61,35 +61,6 @@ unzip ngrok.zip -d $BUILD_DIR/bin > /dev/null 2>&1
 echo "done"
 
 minecraft_version=${MINECRAFT_VERSION:-"1.15.2"}
-
-if echo "$minecraft_version" | grep -q '^1\.15.*$'; then
-  minecraft_uuid="${MINECRAFT_UUID:="bb2b6b1aefcd70dfd1892149ac3a215f6c636b07"}"
-  minecraft_url="https://lex-minecraft.s3.eu-central-1.amazonaws.com/forge.jar"
-elif echo "$minecraft_version" | grep -q '^1\.13.*$'; then
-  minecraft_uuid="${MINECRAFT_UUID:="d0caafb8438ebd206f99930cfaecfa6c9a13dca0"}"
-  minecraft_url="https://launcher.mojang.com/mc/game/${minecraft_version}/server/${minecraft_uuid}/server.jar"
-elif echo "$minecraft_version" | grep -q '^1\.14.*$'; then
-  minecraft_uuid="${MINECRAFT_UUID:="d0d0fe2b1dc6ab4c65554cb734270872b72dadd6"}"
-  minecraft_url="https://launcher.mojang.com/v1/objects/${minecraft_uuid}/server.jar"
-else
-  minecraft_url="https://lex-minecraft.s3.eu-central-1.amazonaws.com/forge.jar"
-fi
-
-echo -n "-----> Installing Minecraft ${minecraft_version}... in url ${minecraft_url}"
-
-for JAR in $(ls); do
-  echo -n $JAR
-done
-
-echo -n "test"
-
-for JAR in $(ls -1 $BUILD_DIR); do
-  echo -n $JAR
-done
-
-curl -o minecraft.jar -s -L $minecraft_url
-mv minecraft.jar $BUILD_DIR/minecraft.jar
-eval "java -jar minecraft.jar --installServer"
 echo "done"
 
 if [ -n "${MINECRAFT_EULA:-""}" ]; then
