@@ -78,13 +78,13 @@ fi
 echo -n "-----> Installing Minecraft ${minecraft_version}... in url ${minecraft_url}"
 
 for JAR in $(ls); do
-  echo -n JAR
+  echo -n $JAR
 done
 
 echo -n "test"
 
 for JAR in $(ls -1 $BUILD_DIR); do
-  echo -n JAR
+  echo -n $JAR
 done
 
 curl -o minecraft.jar -s -L $minecraft_url
